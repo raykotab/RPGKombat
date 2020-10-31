@@ -31,15 +31,39 @@ class Character {
         return $this->alive;
     }
 
-    public function attack($damage, $health): int
+    public function attacks(): int
     {
-        return $damagedHealth - $damage;
+        return rand(100, 250);
     }
 
-    public function getDamaged($damage, $health): int
+    public function takeDamage($damage)
     {
-        return $damagedHealth - $damage;
+        $this->health -= $damage;
     }
+
+    public function die()
+    {
+        if($this->health<= 0)
+        {
+            return $this->alive=false;
+        };
+        return;
+    }
+
+
+
+
+
+   /* public function heal($fighter, Int $number)
+    {
+        if($fighter->isAlive == false) {
+            return;
+        }
+        if($fighter->health 
+            $fighter->health)
+            return;
+            $fighter->health = $fighter->health + $number;
+    }*/
 }   
 
 ?>

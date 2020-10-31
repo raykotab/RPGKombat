@@ -11,16 +11,11 @@ class CharacterTest extends TestCase {
 
 	public function test_if_Health_starts_1000(
 	) {
-		/*$character = new Character();
-		$result = $character->health;*/
-
 		//escenario - given
 		$sonGoku = new Character();
 		//accion - when
-
-		//assert - then
 		$result = $sonGoku->getHealth();
-
+		//assert - then
 		$this->assertEquals(1000, $result);
 	}
 
@@ -33,7 +28,7 @@ class CharacterTest extends TestCase {
 		$this->assertEquals(1, $result);
 	}
 	
-	public function test_if_aliva()
+	public function test_if_alive()
 	{
 		$sonGoku = new Character();
 
@@ -45,19 +40,27 @@ class CharacterTest extends TestCase {
 	public function test_damage_is_substracted_from_health()
 	{//escenario
 		$attacker = new Character();
-		$damaged = new Character();
+		$victim = new Character();
 
 		//action
 
-		$attacker->attack($damaged);
+		$damage = $attacker->attacks();$victim->takeDamage($damage);
 
 		//then
-		$result = $damaged->getHealth();
-
-		$this->assertEquals(900, $result);
+		$this->assertLessThan(1000, $victim->getHealth());
 	}
 	
-
+	public function test_character_dead_if_health_is_0()
+	{
+		//given
+		$sonGoku = new Character();
+		//when
+		$sonGoku->takeDamage(1000);
+		$result = $sonGoku->getHealth();
+		//then
+		$this->assertEquals(false, $result);
+		
+	}
 	
 		
 }
