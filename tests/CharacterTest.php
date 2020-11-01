@@ -62,7 +62,19 @@ class CharacterTest extends TestCase {
 		
 	}
 	
-		
+	public function test_if_heal_adds_repair_to_other_character()
+	{
+		//given
+		$healer = new Character();
+		$wounded = new Character();
+		$woundedHealth = $wounded->getHealth(500);
+		//when
+		$repair = $healer->heal($woundedHealth);
+		$wounded->getHealed($repair);
+		//then
+		$this->assertGreaterThan(500, $wounded->getHealth());
+
+	}	
 }
 
 

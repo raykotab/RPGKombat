@@ -36,12 +36,12 @@ class Character {
         return rand(100, 250);
     }
 
-    public function takeDamage($damage)
+    public function takeDamage($damage): void
     {
         $this->health -= $damage;
     }
 
-    public function die()
+    public function die()/*: bool (da problem con 2 return)(?)*/
     {
         if($this->health<= 0)
         {
@@ -50,6 +50,15 @@ class Character {
         return;
     }
 
+    public function heal(): int
+    {
+        return rand(50, 150);
+    }
+
+    public function getHealed($repair): void
+    {
+        $this->health += $repair;
+    }
 
 
 
