@@ -7,11 +7,13 @@ class Character {
     private int $health;
     private int $level;
     private bool $alive;
+   // const MAX_HEALTH = 1000;   
+   // const MIN_HEALTH = 0; 
     
 
     function __construct() {
 
-        $this->health = 1000;
+        $this->health = 1000;//self::Max_Health;
         $this->level = 1;
         $this->alive = true;
     }
@@ -21,6 +23,11 @@ class Character {
         return $this->health;
     }
 
+    public function setHealth(int $health): void
+    {
+        $this->health = $health;
+    }
+
     public function getLevel(): int
     {
         return $this->level;
@@ -28,51 +35,81 @@ class Character {
 
     public function isAlive(): bool
     {
+        if($this->health <= 0){
+            
+            return $this->alive = false;
+        }
         return $this->alive;
     }
 
-    public function attacks(): int
+    public function die(): bool
     {
-        return rand(100, 250);
+       if($this->health <= 0)
+        {
+            return $this->alive=false && $this->canNotRevive();
+        }
+    }
+
+   /* public function die(): bool
+    {
+        $this->setHealth(self::MIN_HEALTH);
+        $this->alive = false;
+    }*/
+
+    /*public function attacks(Character $victim, int $damage): void
+    {
+        if($damage > $victim->getHealth()) {
+            $victim->die();
+            return;
+        }
+        $victim->setHealth($victim->getHealth() - $damage);
+    }*/
+    public function attacks($character, $damage): void
+    {
+        //$damage = rand(100, 250);
+        $character->health -=$damage;
     }
 
     public function takeDamage($damage): void
     {
-        $this->health -= $damage;
-    }
-
-    public function die()/*: bool (da problem con 2 return)(?)*/
-    {
-        if($this->health<= 0)
-        {
-            return $this->alive=false;
-        };
-        return;
-    }
-
-    public function heal(): int
-    {
-        return rand(50, 150);
-    }
-
-    public function getHealed($repair): void
-    {
-        $this->health += $repair;
-    }
-
-
-
-
-   /* public function heal($fighter, Int $number)
-    {
-        if($fighter->isAlive == false) {
+        $this->health -= $damage;{
             return;
         }
-        if($fighter->health 
-            $fighter->health)
-            return;
-            $fighter->health = $fighter->health + $number;
-    }*/
+
+    }
+
+    public function heal($character, $curepoints): void
+    {
+        $character->health += $curepoints;
+    }
+   
+    // public function heal(Character $wounded, int $repair): void
+    //{
+      //  if($reapir + $wounded->getHealth() > self::MAX_HEALTH) {
+        //    $wounded->setHealth(self::MAX_HEALTH);
+          //  return;
+        //}
+
+       // $wounded->setHealth($wounded->getHealth() + $repair);
+    //}
+
+    
+    public function canNotRevive()//: bool
+    {
+        if($damage < $dead->health) {
+
+        }
+            
+            
+            
+            
+            
+            
+         
+    }
+ 
+
+   
 }   
 
 ?>

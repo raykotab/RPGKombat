@@ -9,8 +9,8 @@ class CharacterTest extends TestCase {
 
 	
 
-	public function test_if_Health_starts_1000(
-	) {
+	public function test_if_Health_starts_1000() 
+	{
 		//escenario - given
 		$sonGoku = new Character();
 		//accion - when
@@ -18,6 +18,8 @@ class CharacterTest extends TestCase {
 		//assert - then
 		$this->assertEquals(1000, $result);
 	}
+
+	
 
 	public function test_Level_starting_at_1()
 	{
@@ -38,26 +40,27 @@ class CharacterTest extends TestCase {
 	}
 
 	public function test_damage_is_substracted_from_health()
-	{//escenario
+	{
+		//escenario
 		$attacker = new Character();
 		$victim = new Character();
-
 		//action
-
-		$damage = $attacker->attacks();$victim->takeDamage($damage);
-
+		$attacker->attacks($victim, 100);
 		//then
-		$this->assertLessThan(1000, $victim->getHealth());
+		$result = $victim->getHealth();
+
+		$this->assertLessThan(1000, $result);
+		//$this->assertEquals(900, $result);
 	}
 	
 	public function test_character_dead_if_health_is_0()
 	{
-		//given
-		$sonGoku = new Character();
-		//when
-		$sonGoku->takeDamage(1000);
-		$result = $sonGoku->getHealth();
-		//then
+		$sonGoku = new Character;
+		$vegetal = new Character;
+
+		$sonGoku->attacks($vegetal, 1000);
+		$result = $vegetal->isAlive();
+
 		$this->assertEquals(false, $result);
 		
 	}
@@ -67,14 +70,32 @@ class CharacterTest extends TestCase {
 		//given
 		$healer = new Character();
 		$wounded = new Character();
-		$woundedHealth = $wounded->getHealth(500);
 		//when
-		$repair = $healer->heal($woundedHealth);
-		$wounded->getHealed($repair);
+		$healer->attacks($wounded, 300);
+		$healer->heal($wounded,100);
 		//then
-		$this->assertGreaterThan(500, $wounded->getHealth());
+		$result = $wounded->getHealth();
+
+		$this->assertEquals(800, $result);
 
 	}	
+
+	public function test_if_dead_cannot_be_healed()
+	{
+		//given
+		$healer = new Character();
+		$dead = new Character();
+		
+		$deadHealth = $dead->setHealth(0);
+		
+		//when
+		$repair = $healer->heal($deadHealth);
+		$dead->getHealed($repair);
+		$dead->canNotRevive();
+		//then
+		$this->assertEquals(false, $dead->isAlive());
+	}
+
 }
 
 
