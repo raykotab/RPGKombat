@@ -50,7 +50,7 @@ class CharacterTest extends TestCase {
 		$result = $victim->getHealth();
 
 		$this->assertLessThan(1000, $result);
-		//$this->assertEquals(900, $result);
+	
 	}
 	
 	public function test_character_dead_if_health_is_0()
@@ -87,10 +87,24 @@ class CharacterTest extends TestCase {
 		$dead = new Character();
 		$healer->attacks($dead, 1000);
 		//when
-		$repair = $healer->heal($dead, 200);
+		
+		$result = $healer->heal($dead, 200);
 		//then
+		$this->assertEquals(0, $result);
 		$this->assertEquals(false, $dead->isAlive());
 	}
+
+	public function test_if_heal_cannot_raise_health_above_1000()
+	{
+		$healer = new Character();
+		$ryu = new Character();
+
+		$result = $healer->heal($ryu, 200);
+
+		$this->assertEquals(1000, $ryu->getHealth());
+	}
+
+	
 
 }
 

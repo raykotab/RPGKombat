@@ -7,8 +7,7 @@ class Character {
     private int $health;
     private int $level;
     private bool $alive;
-   // const MAX_HEALTH = 1000;   
-   // const MIN_HEALTH = 0; 
+   
     
 
     function __construct() {
@@ -39,7 +38,7 @@ class Character {
             
             return $this->alive = false;
         }
-        return $this->alive;
+        return $this->alive = true;
     }
 
     public function die(): bool
@@ -48,26 +47,33 @@ class Character {
         {
             return $this->alive=false;
         }
-    }
 
+    }
   
-    public function attacks($character, $damage): void
+    public function attacks($character, $damage)//: void
     {
         //$damage = rand(100, 250);
         $character->health -=$damage;
+
+        if($character->health <= 0)
+        {
+            return $character->alive = false;
+        }
     }
 
-    /*public function takeDamage($damage): void
+    public function heal($character, $curepoints)//: void
     {
-        $this->health -= $damage;{
-            return;
+        if($character->health + $curepoints > 1000)
+        {
+            return $character ->health = 1000;
         }
 
-    }*/
-
-    public function heal($character, $curepoints): void
-    {
-        $character->health += $curepoints;
+        if($character->alive == true)
+        {
+           return $character->health += $curepoints;
+        }
+        
+        return;
     }
    
    
