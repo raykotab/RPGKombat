@@ -85,13 +85,9 @@ class CharacterTest extends TestCase {
 		//given
 		$healer = new Character();
 		$dead = new Character();
-		
-		$deadHealth = $dead->setHealth(0);
-		
+		$healer->attacks($dead, 1000);
 		//when
-		$repair = $healer->heal($deadHealth);
-		$dead->getHealed($repair);
-		$dead->canNotRevive();
+		$repair = $healer->heal($dead, 200);
 		//then
 		$this->assertEquals(false, $dead->isAlive());
 	}

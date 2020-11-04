@@ -46,68 +46,34 @@ class Character {
     {
        if($this->health <= 0)
         {
-            return $this->alive=false && $this->canNotRevive();
+            return $this->alive=false;
         }
     }
 
-   /* public function die(): bool
-    {
-        $this->setHealth(self::MIN_HEALTH);
-        $this->alive = false;
-    }*/
-
-    /*public function attacks(Character $victim, int $damage): void
-    {
-        if($damage > $victim->getHealth()) {
-            $victim->die();
-            return;
-        }
-        $victim->setHealth($victim->getHealth() - $damage);
-    }*/
+  
     public function attacks($character, $damage): void
     {
         //$damage = rand(100, 250);
         $character->health -=$damage;
     }
 
-    public function takeDamage($damage): void
+    /*public function takeDamage($damage): void
     {
         $this->health -= $damage;{
             return;
         }
 
-    }
+    }*/
 
     public function heal($character, $curepoints): void
     {
         $character->health += $curepoints;
     }
    
-    // public function heal(Character $wounded, int $repair): void
-    //{
-      //  if($reapir + $wounded->getHealth() > self::MAX_HEALTH) {
-        //    $wounded->setHealth(self::MAX_HEALTH);
-          //  return;
-        //}
-
-       // $wounded->setHealth($wounded->getHealth() + $repair);
-    //}
-
+   
     
-    public function canNotRevive()//: bool
-    {
-        if($damage < $dead->health) {
-
-        }
-            
-            
-            
-            
-            
-            
-         
-    }
- 
+   
+    
 
    
 }   
