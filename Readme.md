@@ -35,7 +35,7 @@ It's recommended you perform this kata with a pairing partner and while writing 
 
 ###Iteration Two
 
-A Character cannot Deal Damage to itself.
+2.1     A Character cannot Deal Damage to itself.
 
 A Character can only Heal itself.
 When dealing damage:

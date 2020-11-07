@@ -12,7 +12,7 @@ class Character {
 
     function __construct() {
 
-        $this->health = 1000;//self::Max_Health;
+        $this->health = 1000;
         $this->level = 1;
         $this->alive = true;
     }
@@ -50,15 +50,22 @@ class Character {
 
     }
   
-    public function attacks($character, $damage)//: void
-    {
-        //$damage = rand(100, 250);
-        $character->health -=$damage;
+    public function attacks($character, int $damage)//: void
+    {   
+        if($this !== $character)
+        {
+            $character->health -=$damage;
+        
+        }
+        
 
         if($character->health <= 0)
         {
             return $character->alive = false;
         }
+        
+        $this->getHealth();
+
     }
 
     public function heal($character, $curepoints)//: void
@@ -74,6 +81,7 @@ class Character {
         }
         
         return;
+        
     }
    
    
