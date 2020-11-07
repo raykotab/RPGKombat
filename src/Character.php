@@ -55,10 +55,8 @@ class Character {
         if($this !== $character)
         {
             $character->health -=$damage;
-        
         }
         
-
         if($character->health <= 0)
         {
             return $character->alive = false;
@@ -75,9 +73,9 @@ class Character {
             return $character ->health = 1000;
         }
 
-        if($character->alive == true)
+        if($character->alive == true && $this == $character)
         {
-           return $character->health += $curepoints;
+           $character->health += $curepoints;
         }
         
         return;

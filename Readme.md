@@ -37,12 +37,13 @@ It's recommended you perform this kata with a pairing partner and while writing 
 
 2.1     A Character cannot Deal Damage to itself.
 
-A Character can only Heal itself.
-When dealing damage:
+2.2     A Character can only Heal itself.
+        
+        When dealing damage:
 
-If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
+2.3     If the target is 5 or more Levels above the       attacker, Damage is reduced by 50%
 
-If the target is 5 or more levels below the attacker, Damage is increased by 50%
+2.4     If the target is 5 or more levels below the       attacker, Damage is increased by 50%
 
 
 ###Iteration Three

@@ -65,20 +65,20 @@ class CharacterTest extends TestCase {
 		
 	}
 	
-	public function test_if_heal_adds_repair_to_other_character()
-	{
-		//given
-		$healer = new Character();
-		$wounded = new Character();
-		//when
-		$healer->attacks($wounded, 300);
-		$healer->heal($wounded,100);
-		//then
-		$result = $wounded->getHealth();
+	// public function test_if_heal_adds_repair_to_other_character()
+	// {
+	// 	//given
+	// 	$healer = new Character();
+	// 	$wounded = new Character();
+	// 	//when
+	// 	$healer->attacks($wounded, 300);
+	// 	$healer->heal($wounded,100);
+	// 	//then
+	// 	$result = $wounded->getHealth();
 
-		$this->assertEquals(800, $result);
+	// 	$this->assertEquals(800, $result);
 
-	}	
+	// }	
 
 	public function test_if_dead_cannot_be_healed()
 	{
@@ -114,7 +114,23 @@ class CharacterTest extends TestCase {
 		$this->assertEquals(1000, $character->getHealth());
 	}
 
+	public function test_if_charachter_can_only_heal_itself()
+	{
+		$selfHealer = new Character();
+		$notHealed = new Character();
 
+		$notHealed->attacks($selfHealer, 500);
+		$selfHealer->attacks($notHealed, 600);
+
+		$selfHealer->heal($selfHealer, 200);
+		$selfHealer->heal($notHealed, 200);
+
+		$resultpositive = $selfHealer->getHealth();
+		$resultnegative = $notHealed->getHealth();
+
+		$this->assertEquals(700, $resultpositive);
+		$this->assertEquals(400, $resultnegative);
+	}
 
 }
 
