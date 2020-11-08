@@ -32,6 +32,11 @@ class Character {
         return $this->level;
     }
 
+    public function setLevel(int $level): void
+    {
+        $this->level = $level;
+    }
+
     public function isAlive(): bool
     {
         if($this->health <= 0){
@@ -54,15 +59,22 @@ class Character {
     {   
         if($this !== $character)
         {
+            if($this->level + 5 <= $character->level )
+            {
+            $damage = $damage/2;
+            $character->health -= $damage;
+            }
+
             $character->health -=$damage;
         }
         
+
         if($character->health <= 0)
         {
             return $character->alive = false;
         }
         
-        $this->getHealth();
+        return;
 
     }
 

@@ -8,7 +8,6 @@ use App\Character;
 class CharacterTest extends TestCase {
 
 	
-
 	public function test_if_Health_starts_1000() 
 	{
 		//escenario - given
@@ -18,8 +17,6 @@ class CharacterTest extends TestCase {
 		//assert - then
 		$this->assertEquals(1000, $result);
 	}
-
-	
 
 	public function test_Level_starting_at_1()
 	{
@@ -132,6 +129,20 @@ class CharacterTest extends TestCase {
 		$this->assertEquals(400, $resultnegative);
 	}
 
+	public function test_if_damage_reduced_against_victim_5_levels_above()
+	{
+		$superman = new Character();
+		$superlopez = new Character();
+		$superman->setLevel(6);
+
+		$superlopez->attacks($superman, 200);
+
+		$result = $superman->getHealth();
+
+		$this->assertEquals(800, $result);
+
+	}
+
+
+
 }
-
-
