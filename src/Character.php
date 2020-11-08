@@ -59,10 +59,16 @@ class Character {
     {   
         if($this !== $character)
         {
-            if($this->level + 5 <= $character->level )
+            if($this->level + 5 <= $character->level)
             {
             $damage = $damage/2;
             $character->health -= $damage;
+            }
+
+            if($this->level >= $character->level + 5)
+            {
+            $damage = $damage*2;
+            //$character->health -= $damage*2;
             }
 
             $character->health -=$damage;

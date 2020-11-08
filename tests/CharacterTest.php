@@ -143,6 +143,20 @@ class CharacterTest extends TestCase {
 
 	}
 
+	public function test_if_damage_augmented_against_victim_5_levels_below()
+	{
+		$superman = new Character();
+		$superlopez = new Character();
+		$superman->setLevel(6);
+
+		$superman->attacks($superlopez, 200);
+
+		$result = $superlopez->getHealth();
+
+		$this->assertEquals(600, $result);
+
+	}
+
 
 
 }
