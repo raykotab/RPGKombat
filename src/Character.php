@@ -4,18 +4,24 @@ namespace App;
 
 class Character {
 
+    const MAX_HEALTH = 1000;
     private int $health;
     private int $level;
     private bool $alive;
-   
+    private int $attackRange;
+    private int $characterPosition;
     
 
     function __construct() {
 
-        $this->health = 1000;
+        $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
+        $this->attackRange = $attackRange;
+        $this->characterPosition = $characterPosition;
+
     }
+
 
     public function getHealth(): int
     {
@@ -27,6 +33,7 @@ class Character {
         $this->health = $health;
     }
 
+
     public function getLevel(): int
     {
         return $this->level;
@@ -36,6 +43,23 @@ class Character {
     {
         $this->level = $level;
     }
+
+
+    public function setAttackRange(int $attackRange)
+    {
+        $this->attackRange = $attackRange;
+    }
+
+    public function setCharacterPosition(int $characterPosition)
+    {
+        $this->characterPosition = $characterPosition;
+    }
+
+    public function getDistanceBetweenCombattants(): int
+    {
+        return $this->$characterPosition - $character->$characterPosition;
+    }
+
 
     public function isAlive(): bool
     {
@@ -55,7 +79,7 @@ class Character {
 
     }
   
-    public function attacks($character, int $damage)//: void
+    public function attacks(Character $character, int $damage)//: void
     {   
         if($this !== $character)
         {
@@ -84,11 +108,11 @@ class Character {
 
     }
 
-    public function heal($character, $curepoints)//: void
+    public function heal(Character $character, int $curepoints)//: void
     {
-        if($character->health + $curepoints > 1000)
+        if($character->health + $curepoints > self::MAX_HEALTH)
         {
-            return $character ->health = 1000;
+            return $character ->health = self::MAX_HEALTH;
         }
 
         if($character->alive == true && $this == $character)
@@ -99,13 +123,9 @@ class Character {
         return;
         
     }
-   
-   
-    
-   
-    
 
-   
+
+
 }   
 
 ?>

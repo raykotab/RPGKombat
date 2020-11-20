@@ -62,20 +62,20 @@ class CharacterTest extends TestCase {
 		
 	}
 	
-	// public function test_if_heal_adds_repair_to_other_character()
-	// {
-	// 	//given
-	// 	$healer = new Character();
-	// 	$wounded = new Character();
-	// 	//when
-	// 	$healer->attacks($wounded, 300);
-	// 	$healer->heal($wounded,100);
-	// 	//then
-	// 	$result = $wounded->getHealth();
+	public function test_heal_wont_add_repair_to_other_character()
+	{
+		//given
+		$healer = new Character();
+		$wounded = new Character();
+		//when
+		$healer->attacks($wounded, 300);
+		$healer->heal($wounded,100);
+		//then
+		$result = $wounded->getHealth();
 
-	// 	$this->assertEquals(800, $result);
+		$this->assertEquals(700, $result);
 
-	// }	
+	}	
 
 	public function test_if_dead_cannot_be_healed()
 	{
@@ -157,6 +157,24 @@ class CharacterTest extends TestCase {
 
 	}
 
+	public function test_if_characters_attack_are_ranged()
+	{
+		$short = new Character();
+		$long = new Character();
+		$short->setAttackRange(2);
+		$long->setAttackRange(20);
+		$short->setCharacterPosition(1) - $long->setCharacterPosition(19);
+		$distanceBetweenCombattants =getDistanceBetweenCombattants();
 
+		$short->attacks($long, 200);
+		$long->attacks($short, 400);
+
+		$resultPositive = $short->getHealth();
+		$resultNegative = $long->getHealth();
+
+		$this->assertEquals(600, $resultPositive);
+		$this->assertEquals(1000, $resultNegative);
+
+	}
 
 }
