@@ -43,18 +43,18 @@ It's recommended you perform this kata with a pairing partner and while writing 
 
 2.3     If the target is 5 or more Levels above the       attacker, Damage is reduced by 50%
 
-2.4     If the target is 5 or more levels below the       attacker, Damage is increased by 50%
+2.4     If the target is 5 or more levels below    the attacker, Damage is increased by 50%
 
 
 ###Iteration Three
 
-Characters have an attack Max Range.
+3.1 Characters have an attack Max Range.
 
-Melee fighters have a range of 2 meters.
+3.2 Melee fighters have a range of 2 meters.
 
-Ranged fighters have a range of 20 meters.
+3.3 Ranged fighters have a range of 20 meters.
 
-Characters must be in range to deal damage to a target.
+3.4 Characters must be in range to deal damage to a target.
 
 ##Retrospective
 
@@ -68,32 +68,32 @@ Is everything tested? Are you confident in your code?
 
 ###Iteration Four
 
-Characters may belong to one or more Factions.
+4.1 Characters may belong to one or more Factions.
 
-Newly created Characters belong to no Faction.
+4.2 Newly created Characters belong to no Faction.
 
-A Character may Join or Leave one or more Factions.
+4.3 A Character may Join or Leave one or more Factions.
 
-Players belonging to the same Faction are considered Allies.
+4.4 Players belonging to the same Faction are considered Allies.
 
-Allies cannot Deal Damage to one another.
+4.5 Allies cannot Deal Damage to one another.
 
-Allies can Heal one another.
+4.6 Allies can Heal one another.
 
 
 ###Iteration Five
 
-Characters can damage non-character things (props).
+5.1 Characters can damage non-character things (props).
 
-Anything that has Health may be a target
+5.2 Anything that has Health may be a target
 
-These things cannot be Healed and they do not Deal Damage
+5.3 These things cannot be Healed and they do not Deal Damage
 
-These things do not belong to Factions; they are neutral
+5.4 These things do not belong to Factions; they are neutral
 
-When reduced to 0 Health, things are Destroyed
+5.5 When reduced to 0 Health, things are Destroyed
 
-As an example, you may create a Tree with 2000 Health
+5.6 As an example, you may create a Tree with 2000 Health
 
 
 ##Retrospective

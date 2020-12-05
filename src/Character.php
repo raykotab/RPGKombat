@@ -22,20 +22,24 @@ class Character {
         return $this->health;
     }
 
+
     public function setHealth(int $health): void
     {
         $this->health = $health;
     }
+
 
     public function getLevel(): int
     {
         return $this->level;
     }
 
+
     public function setLevel(int $level): void
     {
         $this->level = $level;
     }
+
 
     public function isAlive(): bool
     {
@@ -46,6 +50,7 @@ class Character {
         return $this->alive = true;
     }
 
+
     public function die(): bool
     {
        if($this->health <= 0)
@@ -53,30 +58,39 @@ class Character {
             return $this->alive=false;
         }
 
+        
     }
   
+
     public function attacks($character, int $damage)//: void
     {   
         if($this !== $character)
         {
-            if($this->level + 5 <= $character->level )
+
+            if($this->level >= $character->level + 5 )
+            {
+            $damage = $damage + $damage/2;
+            $character->health -= $damage;
+            return;
+            }
+
+            elseif($this->level + 5 <= $character->level )
             {
             $damage = $damage/2;
             $character->health -= $damage;
-            }
+            return;
 
+            }
+            
             $character->health -=$damage;
         }
         
 
-        if($character->health <= 0)
-        {
-            return $character->alive = false;
-        }
-        
-        return;
+      
 
     }
+
+
 
     public function heal($character, $curepoints)//: void
     {
