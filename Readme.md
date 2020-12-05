@@ -43,7 +43,7 @@ It's recommended you perform this kata with a pairing partner and while writing 
 
 2.3     If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
 
-2.4     If the target is 5 or more levels below the attacker, Damage is increased by 50%
+2.4     If the target is 5 or more levels below    the attacker, Damage is increased by 50%
 
 
 ###Iteration Three
@@ -83,17 +83,17 @@ Is everything tested? Are you confident in your code?
 
 ###Iteration Five
 
-Characters can damage non-character things (props).
+5.1 Characters can damage non-character things (props).
 
-Anything that has Health may be a target
+5.2 Anything that has Health may be a target
 
-These things cannot be Healed and they do not Deal Damage
+5.3 These things cannot be Healed and they do not Deal Damage
 
-These things do not belong to Factions; they are neutral
+5.4 These things do not belong to Factions; they are neutral
 
-When reduced to 0 Health, things are Destroyed
+5.5 When reduced to 0 Health, things are Destroyed
 
-As an example, you may create a Tree with 2000 Health
+5.6 As an example, you may create a Tree with 2000 Health
 
 
 ##Retrospective

@@ -98,13 +98,13 @@ class CharacterTest extends TestCase {
 
 		$result = $healer->heal($ryu, 200);
 
-		$this->assertEquals(1000, $ryu->getHealth());
+		$this->assertEquals(1000, $result);
 	}
 
 	public function test_if_character_can_deal_itself_damage()
 	{
 		$character = new Character();
-		$gorm = new CHaracter();
+	
 		
 		$result = $character->attacks($character, 100);
 
@@ -129,7 +129,7 @@ class CharacterTest extends TestCase {
 		$this->assertEquals(400, $resultnegative);
 	}
 
-	public function test_if_damage_reduced_against_victim_5_levels_above()
+	public function test_if_damage_reduced_50_percent_against_victim_5_levels_above()
 	{
 		$superman = new Character();
 		$superlopez = new Character();
@@ -139,11 +139,11 @@ class CharacterTest extends TestCase {
 
 		$result = $superman->getHealth();
 
-		$this->assertEquals(800, $result);
+		$this->assertEquals(900, $result);
 
 	}
 
-	public function test_if_damage_augmented_against_victim_5_levels_below()
+	public function test_if_damage_augmented_50_percent_against_victim_5_levels_below()
 	{
 		$superman = new Character();
 		$superlopez = new Character();
@@ -152,28 +152,8 @@ class CharacterTest extends TestCase {
 		$superman->attacks($superlopez, 200);
 
 		$result = $superlopez->getHealth();
-
-		$this->assertEquals(600, $result);
-
-	}
-
-	public function test_if_characters_attack_are_ranged()
-	{
-		$short = new Character();
-		$long = new Character();
-		$short->setAttackRange(2);
-		$long->setAttackRange(20);
-		$short->setCharacterPosition(1) - $long->setCharacterPosition(19);
-		$distanceBetweenCombattants =getDistanceBetweenCombattants();
-
-		$short->attacks($long, 200);
-		$long->attacks($short, 400);
-
-		$resultPositive = $short->getHealth();
-		$resultNegative = $long->getHealth();
-
-		$this->assertEquals(600, $resultPositive);
-		$this->assertEquals(1000, $resultNegative);
+		
+		$this->assertEquals(700, $result);
 
 	}
 
