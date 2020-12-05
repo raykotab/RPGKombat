@@ -157,4 +157,25 @@ class CharacterTest extends TestCase {
 
 	}
 
+	public function test_if_character_has_a_max_attack_range()
+	{
+		$superman = new Character();
+		$superlopez = new Character();
+		$superman->setAttackRange(40);
+		$superlopez->setAttackRange(20);
+		$superman->setCharacterPosition();
+		$superlopez->setCharacterPosition();
+		getRangeBetweenCombattants();
+
+		$superman->attacks($superlopez, 200);
+		$superlopez->attacks($superman, 200);
+
+		$resultPositive = $superlopez->getHealth();
+		$resultNegative = $superman->getHealth();
+		
+		$this->assertEquals(800, $resultPositive);
+		$this->assertEquals(1000, $resultNegative);
+
+	}
+
 }

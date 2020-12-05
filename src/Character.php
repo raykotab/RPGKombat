@@ -8,8 +8,8 @@ class Character {
     private int $health;
     private int $level;
     private bool $alive;
-    private int $attackRange;
-    private int $characterPosition;
+    // private int $attackRange;
+    // private int $characterPosition;
     
 
     function __construct() {
@@ -17,8 +17,8 @@ class Character {
         $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
-        $this->attackRange = $attackRange;
-        $this->characterPosition = $characterPosition;
+        // $this->attackRange = $attackRange;
+        // $this->characterPosition = $characterPosition;
 
     }
 
@@ -57,10 +57,10 @@ class Character {
         $this->characterPosition = $characterPosition;
     }
 
-    public function getDistanceBetweenCombattants(): int
-    {
-        return $this->$characterPosition - $character->$characterPosition;
-    }
+    // public function getDistanceBetweenCombattants(): int
+    // {
+    //     return $this->$characterPosition - $character->$characterPosition;
+    // }
 
 
     public function isAlive(): bool
@@ -80,7 +80,6 @@ class Character {
             return $this->alive=false;
         }
 
-        
     }
   
 
@@ -107,9 +106,6 @@ class Character {
             $character->health -=$damage;
         }
         
-
-      
-
     }
 
 
