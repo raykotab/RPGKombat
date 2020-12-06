@@ -5,12 +5,10 @@ namespace App;
 class Character {
 
     const MAX_HEALTH = 1000;
-    private int $health;
-    private int $level;
-    private bool $alive;
-    private int $attackRange;
-    private int $characterPosition;
-   
+    protected int $health;
+    protected int $level;
+    protected bool $alive;
+    protected bool $inRange;
     
 
     function __construct() {
@@ -18,13 +16,7 @@ class Character {
         $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
-        //$this->characterPosition = $characterPosition;
-
-        if($this->melee == true) {
-            $this->attackRange = 2;
-        }
-        $this->attackRange = 20;
-
+        
     }
 
 
@@ -52,25 +44,6 @@ class Character {
     }
 
 
-    public function setCharacterPosition(int $characterPosition)
-    {
-        $this->characterPosition = $characterPosition;
-    }
-
-    public function getRangeBetween($attackCharacterPosition, $characterPosition): int
-    {
-         return $this->$attackCharacterPosition - $characterPosition;
-    }
-
-    public function isInRange(): int
-    {
-        if ($this->melee = true) {
-
-        }
-         return $this->$attackCharacterPosition - $characterPosition;
-    }
-
-
     public function isAlive(): bool
     {
         if($this->health <= 0){
@@ -87,37 +60,8 @@ class Character {
         {
             return $this->alive=false;
         }
-
     }
-  
-
-    public function attacks($character, int $damage)//: void
-    {   
-        
-        if($this !== $character)
-        {
-
-            if($this->level >= $character->level + 5 )
-            {
-            $damage = $damage + $damage/2;
-            $character->health -= $damage;
-            return;
-            }
-
-            elseif($this->level + 5 <= $character->level )
-            {
-            $damage = $damage/2;
-            $character->health -= $damage;
-            return;
-
-            }
-            
-            $character->health -=$damage;
-        }
-        
-    }
-
-
+    
 
     public function heal($character, $curepoints)//: void
     {
@@ -131,12 +75,50 @@ class Character {
            $character->health += $curepoints;
         }
         
-        return;
-        
+        return; 
     }
 
 
+    
+    
+    public function attacks($character, int $damage): void
+    {   
+        
+        if($this !== $character)
+        {
+            
+            if($this->level >= $character->level + 5 )
+            {
+                $damage = $damage + $damage/2;
+                $character->health -= $damage;
+                return;
+            }
+            
+            elseif($this->level + 5 <= $character->level )
+            {
+                $damage = $damage/2;
+                $character->health -= $damage;
+                return;    
+            }
+            
+            $character->health -=$damage;
 
-}   
+        }
+    }
+    
+    
+//     public function isInRange($pos1, $pos2): bool
+//     {
+//         $combatDistance =  $this->$attackCharacterPosition - $characterPosition;
+    
+//         if($combatDistance <= $attackRange) {
+//             $this->isInRange('', '') = true;
+//         }
+        
+    
+    
+    
+    
+// }   
 
 ?>

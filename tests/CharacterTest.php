@@ -162,8 +162,8 @@ class CharacterTest extends TestCase {
 
 	public function test_if_character_has_a_max_attack_range()
 	{
-		$superman = new Character();
-		$superlopez = new Character();
+		$superman = new RangedCharacter;
+		$superlopez = new MeleeCharacter;
 		$superman->melee = false;
 		$superlopez->melee = true;
 		$superman->setCharacterPosition(30);
