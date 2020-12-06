@@ -4,6 +4,9 @@ namespace Tests;
 
 use  PHPUnit\Framework\TestCase;
 use App\Character;
+use App\Melee;
+use App\Ranged;
+
 
 class CharacterTest extends TestCase {
 
@@ -161,11 +164,11 @@ class CharacterTest extends TestCase {
 	{
 		$superman = new Character();
 		$superlopez = new Character();
-		$superman->setAttackRange(40);
-		$superlopez->setAttackRange(20);
-		$superman->setCharacterPosition();
-		$superlopez->setCharacterPosition();
-		getRangeBetweenCombattants();
+		$superman->melee = false;
+		$superlopez->melee = true;
+		$superman->setCharacterPosition(30);
+		$superlopez->setCharacterPosition(40);
+		
 
 		$superman->attacks($superlopez, 200);
 		$superlopez->attacks($superman, 200);
