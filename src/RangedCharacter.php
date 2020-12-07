@@ -12,9 +12,9 @@ class RangedCharacter extends Character
     private int $characterPosition;
 
 
-    public function __construct(int $characterPosition) {
+    // public function __construct(int $characterPosition) {
 
-        $this->range = self::MAX_RANGE;
-        $this->characterPosition = $characterPosition;
-    }
+    //     $this->range = self::MAX_RANGE;
+    //     $this->characterPosition = $characterPosition;
+    // }
 }

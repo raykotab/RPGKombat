@@ -5,17 +5,23 @@ namespace App;
 class Character {
 
     const MAX_HEALTH = 1000;
+    const MAX_POSITION = 100;
+    const MIN_POSITION = 0;
+
     protected int $health;
     protected int $level;
     protected bool $alive;
-    protected bool $inRange;
+    protected int $position;
+    protected bool $range;
+    protected int $attackRange;
     
 
-    function __construct() {
+    function __construct(bool $range = NULL) {
 
         $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
+        $this->range = $range;
         
     }
 
@@ -42,6 +48,34 @@ class Character {
     {
         $this->level = $level;
     }
+
+
+    public function getRange(): int
+    {
+       return $this->range;
+    }
+
+    public function setRange() 
+    { 
+        if($this->range == true) 
+        {
+        $this->attackrange = 20;
+        }
+        $this->attackRange = 2;
+
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+
+    public function setPosition(int $position): int
+    {
+        return $this->position = $position;
+    }
+
 
 
     public function isAlive(): bool
@@ -79,7 +113,11 @@ class Character {
     }
 
 
-    
+   public function checkLevelDifference($character) 
+   {
+
+
+   }
     
     public function attacks($character, int $damage): void
     {   
@@ -106,19 +144,4 @@ class Character {
         }
     }
     
-    
-//     public function isInRange($pos1, $pos2): bool
-//     {
-//         $combatDistance =  $this->$attackCharacterPosition - $characterPosition;
-    
-//         if($combatDistance <= $attackRange) {
-//             $this->isInRange('', '') = true;
-//         }
-        
-    
-    
-    
-    
-// }   
-
-?>
+}  
