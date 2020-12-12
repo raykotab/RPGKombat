@@ -4,8 +4,7 @@ namespace Tests;
 
 use  PHPUnit\Framework\TestCase;
 use App\Character;
-use App\Melee;
-use App\Ranged;
+
 
 
 class CharacterTest extends TestCase {
@@ -162,14 +161,10 @@ class CharacterTest extends TestCase {
 
 	public function test_if_character_has_a_max_attack_range()
 	{
-		$superman = new RangedCharacter;
-		$superlopez = new MeleeCharacter;
-		$superman->melee = false;
-		$superlopez->melee = true;
-		$superman->setCharacterPosition(30);
-		$superlopez->setCharacterPosition(40);
+		$superman = new Character(30, true);
+		$superlopez = new Character(40, false);
+		var_dump($superman);
 		
-
 		$superman->attacks($superlopez, 200);
 		$superlopez->attacks($superman, 200);
 
@@ -181,4 +176,9 @@ class CharacterTest extends TestCase {
 
 	}
 
+
+	//1 necesito tipo (range) / clases (solucion)
+	//2 posicion setter atributo posicion por constructor (parametro)
+	//3 funcion que diga si estan en range o no
+	//4 como introducir la posicion del enemigo en la funcion de chekrange?
 }

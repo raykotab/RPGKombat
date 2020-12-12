@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 class Character {
 
     const MAX_HEALTH = 1000;
@@ -12,17 +13,18 @@ class Character {
     protected int $level;
     protected bool $alive;
     protected int $position;
-    protected bool $range;
+    protected bool $ranged;
     protected int $attackRange;
-    
+    protected bool $inRange;
 
-    function __construct(bool $range = NULL) {
+    function __construct(? bool $ranged, ? bool $inRange) {
 
         $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
-        $this->range = $range;
-        
+        $this->range = $ranged;
+        $this->position = 0;
+        $this->inRange = $inRange;
     }
 
 
@@ -52,12 +54,13 @@ class Character {
 
     public function getRange(): int
     {
-       return $this->range;
+       return $this->attackRange;
     }
 
-    public function setRange() 
+
+    public function setRange(): void 
     { 
-        if($this->range == true) 
+        if($this->ranged == true) 
         {
         $this->attackrange = 20;
         }
@@ -65,23 +68,24 @@ class Character {
 
     }
 
+
     public function getPosition(): int
     {
         return $this->position;
     }
 
 
-    public function setPosition(int $position): int
+    public function setPosition(int $position): void
     {
-        return $this->position = $position;
+        $this->position = $position;
     }
 
 
 
     public function isAlive(): bool
     {
-        if($this->health <= 0){
-            
+        if($this->health <= 0)
+        {
             return $this->alive = false;
         }
         return $this->alive = true;
@@ -97,7 +101,7 @@ class Character {
     }
     
 
-    public function heal($character, $curepoints)//: void
+    public function heal($character, $curepoints)//: int
     {
         if($character->health + $curepoints > self::MAX_HEALTH)
         {
@@ -112,17 +116,27 @@ class Character {
         return; 
     }
 
+    // separar en tres funciones: 1- melee/ranged?, 2- get enemy position, 3- do the math
+    function checkIsInRange($character->$position)//: bool 
+    {//is melee or ranged?
+        //if melee < 2, if ranged < 20
 
-   public function checkLevelDifference($character) 
-   {
+        $characterPosition = $character->getPosition();
+        
+        $combatDistance = $position - $characterPosition;
+ 
+         if($this->range >= $combatDistance) 
+         {
+           $this->inRange = true;
+         }
+          $this->inRange = false;
+    }
 
-
-   }
     
     public function attacks($character, int $damage): void
     {   
         
-        if($this !== $character)
+        if($this !== $character && $inRange == true)
         {
             
             if($this->level >= $character->level + 5 )
@@ -142,6 +156,7 @@ class Character {
             $character->health -=$damage;
 
         }
+        return;
     }
     
 }  
