@@ -161,18 +161,18 @@ class CharacterTest extends TestCase {
 
 	public function test_if_character_has_a_max_attack_range()
 	{
-		$superman = new Character(30, true);
-		$superlopez = new Character(40, false);
-		var_dump($superman);
+		$superman = new Character(true);
+		$superlopez = new Character(false);
 		
-		$superman->attacks($superlopez, 200);
-		$superlopez->attacks($superman, 200);
-
-		$resultPositive = $superlopez->getHealth();
-		$resultNegative = $superman->getHealth();
+		$superman->setAttackRange();
+		$superlopez->setAttackRange();
 		
-		$this->assertEquals(800, $resultPositive);
-		$this->assertEquals(1000, $resultNegative);
+		$resultRanged = $superman->getAttackRange();
+		$resultMelee = $superlopez->getAttackRange();
+		
+		$this->assertEquals(20, $resultRanged);
+		$this->assertEquals(2, $resultMelee);
+		
 
 	}
 
@@ -181,4 +181,4 @@ class CharacterTest extends TestCase {
 	//2 posicion setter atributo posicion por constructor (parametro)
 	//3 funcion que diga si estan en range o no
 	//4 como introducir la posicion del enemigo en la funcion de chekrange?
-}
+}// separar en tres funciones: 1- melee/ranged?, 2- get enemy position, 3- do the math
