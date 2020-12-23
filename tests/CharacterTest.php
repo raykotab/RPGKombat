@@ -161,11 +161,14 @@ class CharacterTest extends TestCase {
 
 	public function test_if_character_has_a_max_attack_range()
 	{
-		$superman = new Character(true);
-		$superlopez = new Character(false);
+		$superman = new Character();
+		$superlopez = new Character();
 		
-		$superman->setAttackRange();
-		$superlopez->setAttackRange();
+		// $superman->setCharacterAttackType(true);
+		// $superlopez->setCharacterAttackType(false);
+		
+		$superman->setAttackRange(true);
+		$superlopez->setAttackRange(false);
 		
 		$resultRanged = $superman->getAttackRange();
 		$resultMelee = $superlopez->getAttackRange();
@@ -173,9 +176,32 @@ class CharacterTest extends TestCase {
 		$this->assertEquals(2, $resultMelee);
 		$this->assertEquals(20, $resultRanged);
 		
-
 	}
 
+	public function test_if_distance_affects_attacks()
+	{
+		$superman = new Character();
+		$superlopez = new Character();
+		
+		// $superman->setCharacterAttackType(true);
+		// $superlopez->setCharacterAttackType(false);
+		
+		$superman->setAttackRange(true);
+		$superlopez->setAttackRange(false);
+
+		$superman->setPosition(100);
+		$superlopez->setPosition(30);
+
+		$superman->attacks($superlopez, 200);
+		$superlopez->attacks($superlopez, 200);
+		
+		$resultRanged = $superlopez->getHealth();
+		$resultMelee = $superman->getHealth();
+		// var_dump($resultMelee);
+		$this->assertEquals(1000, $resultMelee);
+		$this->assertEquals(800, $resultRanged);
+		
+	}
 
 	//1 necesito tipo (range) / clases (solucion)
 	//2 posicion setter atributo posicion por constructor (parametro)

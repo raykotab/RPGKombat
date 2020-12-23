@@ -19,14 +19,13 @@ class Character {
     protected ?int $attackRange;
     //protected bool $inRange;
 
-    function __construct(bool $ranged = null) {
+    function __construct() {
 
         $this->health = self::MAX_HEALTH;
         $this->level = 1;
         $this->alive = true;
-        $this->ranged = $ranged;
         $this->position = 0;
-        //$this->attackRange = setAttackRange();
+        $this->ranged = false;
        // $this->inRange = $inRange;
     }
 
@@ -54,15 +53,21 @@ class Character {
         $this->level = $level;
     }
 
+    // public function setCharacterAttackType (bool $ranged) {
+
+    //     $this->ranged = $ranged;
+    // }
     
-    public function setAttackRange(): void 
+    public function setAttackRange(bool $ranged)//: void 
     { 
+        $this->ranged = $ranged;
         if($this->ranged == true) 
         {
-            $this->attackRange = self::MAX_ATTACK_RANGE;
+            return $this->attackRange = self::MAX_ATTACK_RANGE;
         }
-        $this->attackRange = self::MIN_ATTACK_RANGE;
-        
+        if($this->ranged == false) {
+        return $this->attackRange = self::MIN_ATTACK_RANGE;
+        }  
     }
     
     
@@ -78,10 +83,10 @@ class Character {
     }
 
 
-    public function getEnemyPosition($character): int
-    {
-        return $character->position;
-    }
+    // public function getEnemyPosition($character->position): int
+    // {
+    //     return $character->position;
+    // }
 
 
     public function setPosition(int $position): void
@@ -89,6 +94,15 @@ class Character {
         $this->position = $position;
     }
 
+    public function isInRange($enemyPosition) {
+
+        $distanceToCombat = $enemyPosition - $this->position;
+        if($distanceToCombat <= $this->attackRange) {
+            $this->attacks;
+        }
+        return;
+
+    }
 
     public function isAlive(): bool
     {
@@ -126,20 +140,8 @@ class Character {
 
     
     // separar en tres funciones: 1- melee/ranged?, 2- get enemy position, 3- do the math
-    // function checkIsInRange($character->$position)//: bool 
-    // {//is melee or ranged?
-    //     //if melee < 2, if ranged < 20
-
-    //     $characterPosition = $character->getPosition();
-        
-    //     $combatDistance = $position - $characterPosition;
- 
-    //      if($this->range >= $combatDistance) 
-    //      {
-    //        $this->inRange = true;
-    //      }
-    //       $this->inRange = false;
-    // }
+    
+    
 
     
     public function attacks($character, int $damage): void//pasar level por character const arg y extraer asi 
@@ -170,8 +172,3 @@ class Character {
     
 }  
 
-// protected static function clamp($value){
-//     if($value < self::MIN) $value = self::MIN;
-//     if($value > self::MAX) $value = self::MAX;
-//     return $value;
-//   }
