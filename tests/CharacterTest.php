@@ -183,9 +183,6 @@ class CharacterTest extends TestCase {
 		$superman = new Character();
 		$superlopez = new Character();
 		
-		// $superman->setCharacterAttackType(true);
-		// $superlopez->setCharacterAttackType(false);
-		
 		$superman->setAttackRange(true);
 		$superlopez->setAttackRange(false);
 
@@ -197,14 +194,11 @@ class CharacterTest extends TestCase {
 		
 		$resultRanged = $superlopez->getHealth();
 		$resultMelee = $superman->getHealth();
-		// var_dump($resultMelee);
 		$this->assertEquals(1000, $resultMelee);
 		$this->assertEquals(800, $resultRanged);
 		
 	}
 
-	//1 necesito tipo (range) / clases (solucion)
-	//2 posicion setter atributo posicion por constructor (parametro)
-	//3 funcion que diga si estan en range o no
-	//4 como introducir la posicion del enemigo en la funcion de chekrange?
-}// separar en tres funciones: 1- melee/ranged?, 2- get enemy position, 3- do the math
+	
+
+}
