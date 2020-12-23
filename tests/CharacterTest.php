@@ -170,8 +170,8 @@ class CharacterTest extends TestCase {
 		$resultRanged = $superman->getAttackRange();
 		$resultMelee = $superlopez->getAttackRange();
 		
-		$this->assertEquals(20, $resultRanged);
 		$this->assertEquals(2, $resultMelee);
+		$this->assertEquals(20, $resultRanged);
 		
 
 	}

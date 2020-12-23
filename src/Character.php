@@ -8,6 +8,8 @@ class Character {
     const MAX_HEALTH = 1000;
     const MAX_POSITION = 100;
     const MIN_POSITION = 0;
+    const MAX_ATTACK_RANGE = 20;
+    const MIN_ATTACK_RANGE = 2;
 
     protected int $health;
     protected int $level;
@@ -57,9 +59,9 @@ class Character {
     { 
         if($this->ranged == true) 
         {
-            $this->attackRange = 20;
+            $this->attackRange = self::MAX_ATTACK_RANGE;
         }
-        $this->attackRange = 2;
+        $this->attackRange = self::MIN_ATTACK_RANGE;
         
     }
     
@@ -167,3 +169,9 @@ class Character {
     }
     
 }  
+
+// protected static function clamp($value){
+//     if($value < self::MIN) $value = self::MIN;
+//     if($value > self::MAX) $value = self::MAX;
+//     return $value;
+//   }
