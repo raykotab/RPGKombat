@@ -58,13 +58,13 @@ It's recommended you perform this kata with a pairing partner and while writing 
 
 ##Retrospective
 
-Are you keeping up with the requirements? Has any iteration been a big challenge?
+Are you keeping up with the requirements? Has any iteration been a big challenge? yeeeeh, BIG challenge.
 
-Do you feel good about your design? 
+Do you feel good about your design? not so good.
 
-Is it scalable and easily adapted to new requirements?
+Is it scalable and easily adapted to new requirements? not really, with difficulty.
 
-Is everything tested? Are you confident in your code?
+Is everything tested? Definetly hope so. Are you confident in your code? not so sure.
 
 ###Iteration Four
 

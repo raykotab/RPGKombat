@@ -4,7 +4,7 @@ namespace Tests;
 
 use  PHPUnit\Framework\TestCase;
 use App\Character;
-
+use App\Faction;
 
 
 class CharacterTest extends TestCase {
@@ -164,9 +164,6 @@ class CharacterTest extends TestCase {
 		$superman = new Character();
 		$superlopez = new Character();
 		
-		// $superman->setCharacterAttackType(true);
-		// $superlopez->setCharacterAttackType(false);
-		
 		$superman->setAttackRange(true);
 		$superlopez->setAttackRange(false);
 		
@@ -199,6 +196,23 @@ class CharacterTest extends TestCase {
 		
 	}
 
-	
+	//Iteration 4
+	//clasws no, array? interface?
+
+	public function test_if_characters_can_belong_to_factions()
+	{
+		$mrSamsa = new Character();
+		$faction1 = new Faction('blue');
+		$faction2 = new Faction('red');
+		$mrSamsa->factionAffiliate($faction1);
+		$mrSamsa->factionAffiliate($faction2);
+
+		$result = $mrSamsa->getFactionNames();
+
+		$this->assertContains('red', $result);
+		$this->assertContains('blue', $result);
+
+	}	
+
 
 }

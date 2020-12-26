@@ -3,7 +3,7 @@
 namespace App;
 
 
-class Character {
+class Character implements IFaction {
 
     const MAX_HEALTH = 1000;
     const MAX_POSITION = 100;
@@ -17,7 +17,7 @@ class Character {
     protected int $position;
     protected ?bool $ranged;
     protected ?int $attackRange;
-    
+    protected array $factionNames = [];
 
     function __construct() {
 
@@ -26,7 +26,8 @@ class Character {
         $this->alive = true;
         $this->position = 0;
         $this->ranged = false;
-       
+        //$this->factionNames = [''];
+
     }
 
 
@@ -156,5 +157,24 @@ class Character {
         return;
     }
     
+
+    public function factionAffiliate(Faction $faction) {
+
+        array_push($this->factionNames, $faction->getName());
+
+    }
+
+   public function factionRenegate(Faction $faction) {
+
+
+   }
+
+   public function getFactionNames () {
+
+       return $this->factionNames;
+           
+    }
+   
+
 }  
 
