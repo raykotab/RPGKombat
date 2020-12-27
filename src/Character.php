@@ -26,7 +26,6 @@ class Character implements IFaction {
         $this->alive = true;
         $this->position = 0;
         $this->ranged = false;
-        //$this->factionNames = [''];
 
     }
 
@@ -166,6 +165,7 @@ class Character implements IFaction {
 
    public function factionRenegate(Faction $faction) {
 
+        array_pop($this->factionNames);
 
    }
 

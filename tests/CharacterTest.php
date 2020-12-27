@@ -5,7 +5,7 @@ namespace Tests;
 use  PHPUnit\Framework\TestCase;
 use App\Character;
 use App\Faction;
-
+use FFI\CData;
 
 class CharacterTest extends TestCase {
 
@@ -223,6 +223,42 @@ class CharacterTest extends TestCase {
 
 		$this->assertEquals($result, []);
 	}
+
+	public function test_if_character_can_join_one_or_more_factions() {
+		$mrSamsa = new Character();
+		$factionRed = new Faction('factionRed');
+		$factionBlue = new Faction ('factionBlue');
+
+		$mrSamsa->factionAffiliate($factionRed);
+		$mrSamsa->factionAffiliate($factionBlue);
+
+		$result = $mrSamsa->getFactionNames();
+
+		$this->assertContains('factionRed', $result);
+		$this->assertContains('factionBlue', $result);
+	}
+
+
+	public function test_if_character_can_leave_one_or_more_factions() {
+		$mrSamsa = new Character();
+		$factionRed = new Faction('factionRed');
+		$factionBlue = new Faction ('factionBlue');
+
+		$mrSamsa->factionAffiliate($factionRed);
+		$mrSamsa->factionAffiliate($factionBlue);
+
+		$result = $mrSamsa->getFactionNames();
+
+		//print_r($result);
+
+		$mrSamsa->factionRenegate($factionRed);
+		$mrSamsa->factionRenegate($factionBlue);
+
+		$result = $mrSamsa->getFactionNames();
+
+		$this->assertEquals($result, []);
+	}
+
 
 	
 }
