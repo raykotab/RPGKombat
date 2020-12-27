@@ -214,5 +214,15 @@ class CharacterTest extends TestCase {
 
 	}	
 
+	public function test_if_character_belongs_no_faction_when_created() {
 
+		$mrSamsa = new Character();
+		$factionRed = new Faction('red');
+
+		$result = $mrSamsa->getFactionNames();
+
+		$this->assertEquals($result, []);
+	}
+
+	
 }
