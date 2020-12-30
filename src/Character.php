@@ -136,7 +136,7 @@ class Character implements IFaction {
             return $character ->health = self::MAX_HEALTH;
         }
         
-        if($character->alive == true &&  $this->getCommonFactions($character) !== [])
+        if($character->alive == true && ($this == $character || $this->getCommonFactions($character) !== []))
         {
             $character->health += $curepoints;
         }

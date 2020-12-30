@@ -119,7 +119,7 @@ class CharacterTest extends TestCase {
 		$resultpositive = $selfHealer->getHealth();
 		$resultnegative = $notHealed->getHealth();
 
-		//$this->assertEquals(700, $resultpositive);
+		$this->assertEquals(700, $resultpositive);
 		$this->assertEquals(400, $resultnegative);
 	}
 
