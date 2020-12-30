@@ -160,8 +160,9 @@ class Character implements IFaction {
     
     public function attacks($character, int $damage): void//pasar level por character const arg y extraer asi 
     {   
+        $this->setAllies($character);
         
-        if($this !== $character && $this->getCommonFactions($character) == [])
+        if($this !== $character && $this->allies == false)
         {
             
             if($this->level >= $character->level + 5 )
