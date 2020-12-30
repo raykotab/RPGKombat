@@ -2,6 +2,7 @@
 
 namespace App;
 
+use PHPUnit\Framework\Constraint\IsFalse;
 
 class Character implements IFaction {
 
@@ -87,6 +88,35 @@ class Character implements IFaction {
         $this->position = $position;
     }
 
+    public function getFactionNames() {
+
+        return $this->factionNames;
+            
+     }
+ 
+    public function setAllies() {
+         
+        if(count($this->commonFactions) > 0) {
+            $this->allies = true;
+        }
+ 
+        return;
+ 
+         // if(in_array($this, $faction->factionMembers)) {
+         //     foreach($faction->factionMembers as $character) {
+         //         $this->allies = true;
+         //         array_push($alliesList, $character);
+         //     }    
+         // }
+    }
+    
+    public function getCommonFactions($character) {
+ 
+        $characterFactions = $character->getFactionNames();
+        $commonFactions = array_intersect($characterFactions, $this->factionNames);
+        $this->commonFactions = $commonFactions;
+        return $commonFactions;
+    }
     
     public function isAlive(): bool
     {
@@ -135,7 +165,7 @@ class Character implements IFaction {
     public function attacks($character, int $damage): void//pasar level por character const arg y extraer asi 
     {   
         
-        if($this !== $character)
+        if($this !== $character && $this->getCommonFactions($character) == [])
         {
             
             if($this->level >= $character->level + 5 )
@@ -172,35 +202,7 @@ class Character implements IFaction {
 
    }
 
-   public function getFactionNames() {
-
-       return $this->factionNames;
-           
-    }
-
-    public function setAllies() {
-        
-        if(count($this->commonFactions) > 0) {
-            $this->allies = true;
-        }
-
-        return;
-
-        // if(in_array($this, $faction->factionMembers)) {
-        //     foreach($faction->factionMembers as $character) {
-        //         $this->allies = true;
-        //         array_push($alliesList, $character);
-        //     }    
-        // }
-    }
    
-    public function getCommonFactions($character) {
-
-        $characterFactions = $character->getFactionNames();
-        $commonFactions = array_intersect($characterFactions, $this->factionNames);
-        $this->commonFactions = $commonFactions;
-        return $commonFactions;
-    }
      
 }  
 

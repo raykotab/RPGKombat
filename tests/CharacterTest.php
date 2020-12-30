@@ -262,4 +262,20 @@ class CharacterTest extends TestCase {
 
 	}
 
+	public function test_if_allies_cannot_damage_each_other() {
+
+		$mrSamsa = new Character();
+		$gregor = new Character();
+		$factionRed = new Faction('red');
+		
+		$mrSamsa->factionAffiliate($factionRed);
+		$gregor->factionAffiliate($factionRed);
+
+		$mrSamsa->attacks($gregor, 200);
+		
+		$result = $gregor->getHealth();
+
+		$this->assertEquals($result, 1000);
+
+	}
 }
