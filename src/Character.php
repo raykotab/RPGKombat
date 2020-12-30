@@ -18,6 +18,8 @@ class Character implements IFaction {
     protected ?bool $ranged;
     protected ?int $attackRange;
     protected array $factionNames = [];
+    protected bool $allies = false;
+    protected array $commonFactions = [];
 
     function __construct() {
 
@@ -160,6 +162,7 @@ class Character implements IFaction {
     public function factionAffiliate(Faction $faction) {
 
         array_push($this->factionNames, $faction->getName());
+    
 
     }
 
@@ -169,12 +172,35 @@ class Character implements IFaction {
 
    }
 
-   public function getFactionNames () {
+   public function getFactionNames() {
 
        return $this->factionNames;
            
     }
-   
 
+    public function setAllies() {
+        
+        if(count($this->commonFactions) > 0) {
+            $this->allies = true;
+        }
+
+        return;
+
+        // if(in_array($this, $faction->factionMembers)) {
+        //     foreach($faction->factionMembers as $character) {
+        //         $this->allies = true;
+        //         array_push($alliesList, $character);
+        //     }    
+        // }
+    }
+   
+    public function getCommonFactions($character) {
+
+        $characterFactions = $character->getFactionNames();
+        $commonFactions = array_intersect($characterFactions, $this->factionNames);
+        $this->commonFactions = $commonFactions;
+        return $commonFactions;
+    }
+     
 }  
 

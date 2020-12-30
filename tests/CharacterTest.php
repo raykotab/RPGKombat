@@ -12,11 +12,8 @@ class CharacterTest extends TestCase {
 	
 	public function test_if_Health_starts_1000() 
 	{
-		//escenario - given
 		$sonGoku = new Character();
-		//accion - when
 		$result = $sonGoku->getHealth();
-		//assert - then
 		$this->assertEquals(1000, $result);
 	}
 
@@ -40,12 +37,9 @@ class CharacterTest extends TestCase {
 
 	public function test_damage_is_substracted_from_health()
 	{
-		//escenario
 		$attacker = new Character();
 		$victim = new Character();
-		//action
 		$attacker->attacks($victim, 100);
-		//then
 		$result = $victim->getHealth();
 
 		$this->assertLessThan(1000, $result);
@@ -66,13 +60,10 @@ class CharacterTest extends TestCase {
 	
 	public function test_heal_wont_add_repair_to_other_character()
 	{
-		//given
 		$healer = new Character();
 		$wounded = new Character();
-		//when
 		$healer->attacks($wounded, 300);
 		$healer->heal($wounded,100);
-		//then
 		$result = $wounded->getHealth();
 
 		$this->assertEquals(700, $result);
@@ -81,14 +72,11 @@ class CharacterTest extends TestCase {
 
 	public function test_if_dead_cannot_be_healed()
 	{
-		//given
 		$healer = new Character();
 		$dead = new Character();
 		$healer->attacks($dead, 1000);
-		//when
 		
 		$result = $healer->heal($dead, 200);
-		//then
 		$this->assertEquals(0, $result);
 		$this->assertEquals(false, $dead->isAlive());
 	}
@@ -197,7 +185,6 @@ class CharacterTest extends TestCase {
 	}
 
 	//Iteration 4
-	//clasws no, array? interface?
 
 	public function test_if_characters_can_belong_to_factions()
 	{
@@ -260,5 +247,19 @@ class CharacterTest extends TestCase {
 	}
 
 
-	
+	public function test_if_characters_belonging_to_same_faction_are_allies() {
+
+		$mrSamsa = new Character();
+		$gregor = new Character();
+		$factionRed = new Faction('red');
+		
+		$mrSamsa->factionAffiliate($factionRed);
+		$gregor->factionAffiliate($factionRed);
+
+		$result = $mrSamsa->getCommonFactions($gregor);
+
+		$this->assertNotEmpty($result);
+
+	}
+
 }

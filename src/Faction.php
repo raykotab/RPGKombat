@@ -7,6 +7,7 @@ namespace App;
 class Faction {
 
     protected string $name;
+    protected array $factionMembers = [];
 
     public function __construct($name) {
 
@@ -17,6 +18,21 @@ class Faction {
         
         return $this->name;
     }
+
+    // public function setFactionMembers($character) {
+
+    //     if($character->factionNames !== [])
+    //     array_push($this->factionMembers, $character);
+        
+    //     foreach($this->factionMembers as $character) {
+    //         $character->setAllies();
+    //     }
+    // }
+
+    // public function getFactionMembers() {
+
+    //     return $this->factionMembers;
+    // }
 }
 
 
