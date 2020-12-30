@@ -99,15 +99,7 @@ class Character implements IFaction {
         if(count($this->commonFactions) > 0) {
             $this->allies = true;
         }
- 
         return;
- 
-         // if(in_array($this, $faction->factionMembers)) {
-         //     foreach($faction->factionMembers as $character) {
-         //         $this->allies = true;
-         //         array_push($alliesList, $character);
-         //     }    
-         // }
     }
     
     public function getCommonFactions($character) {
@@ -144,7 +136,7 @@ class Character implements IFaction {
             return $character ->health = self::MAX_HEALTH;
         }
         
-        if($character->alive == true && $this == $character)
+        if($character->alive == true &&  $this->getCommonFactions($character) !== [])
         {
             $character->health += $curepoints;
         }
