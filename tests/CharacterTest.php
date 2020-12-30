@@ -190,7 +190,7 @@ class CharacterTest extends TestCase {
 		
 	}
 
-	//Iteration 4
+	//It. 4
 
 	public function test_if_characters_can_belong_to_factions()
 	{
@@ -242,7 +242,6 @@ class CharacterTest extends TestCase {
 
 		$result = $mrSamsa->getFactionNames();
 
-		//print_r($result);
 
 		$mrSamsa->factionRenegate($factionRed);
 		$mrSamsa->factionRenegate($factionBlue);
@@ -306,4 +305,8 @@ class CharacterTest extends TestCase {
 		$this->assertEquals($result2, 1000);
 
 	}
+
+	//It. 5
+
+	
 }

@@ -88,21 +88,24 @@ class Character implements IFaction {
         $this->position = $position;
     }
 
-    public function getFactionNames() {
+    public function getFactionNames(): array 
+    {
 
         return $this->factionNames;
             
      }
  
-    public function setAllies($character) {
+    public function setAllies($character): void 
+    {
         $commonFactions = $this->getCommonFactions($character); 
         if(count($commonFactions) > 0) {
             $this->allies = true;
         }
-        return;//
+        
     }
     
-    public function getCommonFactions($character) {
+    public function getCommonFactions($character): array 
+    {
  
         $characterFactions = $character->getFactionNames();
         $commonFactions = array_intersect($characterFactions, $this->factionNames);
@@ -148,7 +151,8 @@ class Character implements IFaction {
         return; 
     }
     
-    public function isInRange($enemyPosition) {
+    public function isInRange($enemyPosition): void 
+    {
 
         $distanceToCombat = $enemyPosition - $this->position;
         if($distanceToCombat <= $this->attackRange) {
@@ -161,7 +165,7 @@ class Character implements IFaction {
     public function attacks($character, int $damage): void//pasar level por character const arg y extraer asi 
     {   
         $this->setAllies($character);
-        
+
         if($this !== $character && $this->allies == false)
         {
             
@@ -186,14 +190,16 @@ class Character implements IFaction {
     }
     
 
-    public function factionAffiliate(Faction $faction) {
+    public function factionAffiliate(Faction $faction): void 
+    {
 
         array_push($this->factionNames, $faction->getName());
     
 
     }
 
-   public function factionRenegate(Faction $faction) {
+   public function factionRenegate(Faction $faction): void 
+   {
 
         array_pop($this->factionNames);
 
