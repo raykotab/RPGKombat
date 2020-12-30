@@ -94,12 +94,12 @@ class Character implements IFaction {
             
      }
  
-    public function setAllies() {
-         
-        if(count($this->commonFactions) > 0) {
+    public function setAllies($character) {
+        $commonFactions = $this->getCommonFactions($character); 
+        if(count($commonFactions) > 0) {
             $this->allies = true;
         }
-        return;
+        return;//
     }
     
     public function getCommonFactions($character) {
@@ -131,12 +131,16 @@ class Character implements IFaction {
     
     public function heal($character, $curepoints)//: int
     {
+        
+        $this->setAllies($character);
+
         if($character->health + $curepoints > self::MAX_HEALTH)
         {
             return $character ->health = self::MAX_HEALTH;
         }
         
-        if($character->alive == true && ($this == $character || $this->getCommonFactions($character) !== []))
+
+        if($character->alive == true && ($this == $character || $this->allies == true))
         {
             $character->health += $curepoints;
         }

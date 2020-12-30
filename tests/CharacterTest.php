@@ -298,6 +298,7 @@ class CharacterTest extends TestCase {
 		$mrSamsa->attacks($gregor, 200);
 		$result1 = $gregor->getHealth();
 		
+		
 		$grete->heal($gregor, 200);
 		$result2 = $gregor->getHealth();
 		
