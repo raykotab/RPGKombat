@@ -6,6 +6,8 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 
 ##Instructions
 
+For running unit tests: run ```vendor/bin/phpunit``` on console.
+
 Complete each iteration before reading the next one.
 
 It's recommended you perform this kata with a pairing partner and while writing tests.

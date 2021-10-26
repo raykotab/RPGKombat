@@ -5,6 +5,8 @@ namespace Tests;
 use  PHPUnit\Framework\TestCase;
 use App\Character;
 use App\Faction;
+use App\Prop;
+
 use FFI\CData;
 
 class CharacterTest extends TestCase {
@@ -218,6 +220,7 @@ class CharacterTest extends TestCase {
 	}
 
 	public function test_if_character_can_join_one_or_more_factions() {
+
 		$mrSamsa = new Character();
 		$factionRed = new Faction('factionRed');
 		$factionBlue = new Faction ('factionBlue');
@@ -307,6 +310,30 @@ class CharacterTest extends TestCase {
 	}
 
 	//It. 5
+
+	public function test_if_prop_exist() {
+
+		$tree = new Prop('tree', 3000);
+
+		$result = $tree->getName();
+		
+		$this->assertEquals($result, 'tree');
+
+	}
+
+	public function test_if_prop_can_take_damage() {
+		
+		$tree = new Prop('tree', 3000);
+		$mrSamsa = new Character();
+		$gregor = new Character();
+		$mrSamsa->attacks($gregor, 500);
+		$result = $tree->getHealth();
+		
+		$this->assertEquals($result, 2500);
+
+	}
+
+
 
 	
 }
